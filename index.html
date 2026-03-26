@@ -483,7 +483,7 @@
     <a href="#videos">Free Videos</a>
     <a href="#how">How It Works</a>
     <a href="#reviews">Reviews</a>
-    <a href="#book" class="nav-cta">Book Now</a>
+    <a href="#" class="nav-cta" onclick="openModal(); return false;">Book Now</a>
   </div>
 </nav>
 
@@ -652,34 +652,40 @@
 
 <!-- BOOKING MODAL -->
 <div id="booking-modal" style="display:none; position:fixed; inset:0; z-index:1000; align-items:center; justify-content:center; padding:1rem;">
-  <div id="modal-backdrop" style="position:absolute; inset:0; background:rgba(13,27,75,0.75); backdrop-filter:blur(4px);"></div>
-  <div style="position:relative; background:#fff; border-radius:24px; padding:2.5rem 2rem; max-width:440px; width:100%; box-shadow:0 30px 80px rgba(0,0,0,0.3); border-top:6px solid var(--pink);">
-    <button id="modal-close" style="position:absolute;top:1rem;right:1.2rem;background:none;border:none;font-size:1.6rem;cursor:pointer;color:#aaa;line-height:1;">&#215;</button>
-    <div style="text-align:center; margin-bottom:1.5rem;">
-      <div style="font-size:2.5rem; margin-bottom:0.4rem;">&#129336;</div>
-      <h3 style="font-family:'Boogaloo',cursive; font-size:1.9rem; color:var(--navy);">Book Your Cartwhele</h3>
-      <p style="color:#6a7ab0; font-size:0.92rem; margin-top:0.3rem;">We'll be in touch to confirm your spot!</p>
+  <div onclick="closeModal()" style="position:absolute; inset:0; background:rgba(13,27,75,0.75);"></div>
+  <div style="position:relative; background:#fff; border-radius:24px; padding:2.5rem 2rem; max-width:440px; width:100%; box-shadow:0 30px 80px rgba(0,0,0,0.35); border-top:6px solid #ff4d8b;">
+    <button onclick="closeModal()" style="position:absolute;top:1rem;right:1.2rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#aaa;line-height:1;">&times;</button>
+
+    <div id="form-success" style="display:none; text-align:center; padding:2rem 0;">
+      <div style="font-size:3rem;">&#127881;</div>
+      <h4 style="font-family:Boogaloo,cursive; font-size:1.8rem; color:#0d1b4b; margin:0.5rem 0;">You are booked in!</h4>
+      <p style="color:#6a7ab0;">We have received your details and will be in touch soon.</p>
+      <button onclick="closeModal()" style="margin-top:1.2rem; background:#ff4d8b; color:#fff; border:none; border-radius:50px; padding:0.7rem 1.8rem; font-family:Fredoka One,cursive; font-size:1rem; cursor:pointer;">Close</button>
     </div>
-    <div id="form-success" style="display:none; text-align:center; padding:1.5rem 0;">
-      <div style="font-size:3rem; margin-bottom:0.8rem;">&#127881;</div>
-      <h4 style="font-family:'Boogaloo',cursive; font-size:1.6rem; color:var(--navy); margin-bottom:0.5rem;">You're booked in!</h4>
-      <p style="color:#6a7ab0;">We've received your details and will be in touch very soon.</p>
-    </div>
+
     <div id="form-wrap">
-      <div style="margin-bottom:1.1rem;">
-        <label style="display:block; font-weight:800; font-size:0.85rem; color:var(--navy); margin-bottom:0.35rem; letter-spacing:0.04em;">YOUR NAME</label>
-        <input id="f-name" type="text" placeholder="e.g. Jamie Smith" style="width:100%; padding:0.75rem 1rem; border:2px solid #e0e4f5; border-radius:12px; font-family:'Nunito',sans-serif; font-size:1rem; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--pink)'" onblur="this.style.borderColor='#e0e4f5'">
+      <div style="text-align:center; margin-bottom:1.5rem;">
+        <div style="font-size:2.2rem;">&#129336;</div>
+        <h3 style="font-family:Boogaloo,cursive; font-size:1.9rem; color:#0d1b4b; margin:0.3rem 0;">Book Your Cartwhele</h3>
+        <p style="color:#6a7ab0; font-size:0.9rem;">Fill in your details and we will be in touch!</p>
       </div>
-      <div style="margin-bottom:1.1rem;">
-        <label style="display:block; font-weight:800; font-size:0.85rem; color:var(--navy); margin-bottom:0.35rem; letter-spacing:0.04em;">EMAIL ADDRESS</label>
-        <input id="f-email" type="email" placeholder="e.g. jamie@example.com" style="width:100%; padding:0.75rem 1rem; border:2px solid #e0e4f5; border-radius:12px; font-family:'Nunito',sans-serif; font-size:1rem; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--pink)'" onblur="this.style.borderColor='#e0e4f5'">
+
+      <div style="margin-bottom:1rem;">
+        <label style="display:block; font-weight:800; font-size:0.82rem; color:#0d1b4b; margin-bottom:0.3rem; letter-spacing:0.05em;">YOUR NAME</label>
+        <input id="f-name" type="text" placeholder="e.g. Jamie Smith" style="width:100%; padding:0.75rem 1rem; border:2px solid #e0e4f5; border-radius:12px; font-size:1rem; font-family:Nunito,sans-serif; box-sizing:border-box;">
       </div>
-      <div style="margin-bottom:1.6rem;">
-        <label style="display:block; font-weight:800; font-size:0.85rem; color:var(--navy); margin-bottom:0.35rem; letter-spacing:0.04em;">PHONE NUMBER</label>
-        <input id="f-phone" type="tel" placeholder="e.g. 07700 900000" style="width:100%; padding:0.75rem 1rem; border:2px solid #e0e4f5; border-radius:12px; font-family:'Nunito',sans-serif; font-size:1rem; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--pink)'" onblur="this.style.borderColor='#e0e4f5'">
+      <div style="margin-bottom:1rem;">
+        <label style="display:block; font-weight:800; font-size:0.82rem; color:#0d1b4b; margin-bottom:0.3rem; letter-spacing:0.05em;">EMAIL ADDRESS</label>
+        <input id="f-email" type="email" placeholder="e.g. jamie@example.com" style="width:100%; padding:0.75rem 1rem; border:2px solid #e0e4f5; border-radius:12px; font-size:1rem; font-family:Nunito,sans-serif; box-sizing:border-box;">
       </div>
-      <div id="form-error" style="display:none; background:#fff0f4; border:1.5px solid var(--pink); border-radius:10px; padding:0.7rem 1rem; color:var(--pink); font-size:0.88rem; font-weight:700; margin-bottom:1rem;"></div>
-      <button id="submit-btn" onclick="submitBooking()" style="width:100%; background:var(--pink); color:#fff; font-family:'Fredoka One',cursive; font-size:1.15rem; padding:0.9rem; border:none; border-radius:50px; cursor:pointer; box-shadow:4px 4px 0 var(--navy); transition:transform 0.15s, box-shadow 0.15s;">
+      <div style="margin-bottom:1.5rem;">
+        <label style="display:block; font-weight:800; font-size:0.82rem; color:#0d1b4b; margin-bottom:0.3rem; letter-spacing:0.05em;">PHONE NUMBER</label>
+        <input id="f-phone" type="tel" placeholder="e.g. 07700 900000" style="width:100%; padding:0.75rem 1rem; border:2px solid #e0e4f5; border-radius:12px; font-size:1rem; font-family:Nunito,sans-serif; box-sizing:border-box;">
+      </div>
+
+      <div id="form-error" style="display:none; background:#fff0f4; border:1.5px solid #ff4d8b; border-radius:10px; padding:0.6rem 1rem; color:#ff4d8b; font-weight:700; font-size:0.88rem; margin-bottom:1rem;"></div>
+
+      <button onclick="submitBooking()" id="submit-btn" style="width:100%; background:#ff4d8b; color:#fff; font-family:Fredoka One,cursive; font-size:1.15rem; padding:0.9rem; border:none; border-radius:50px; cursor:pointer; box-shadow:4px 4px 0 #0d1b4b;">
         Send Booking Request &#129336;
       </button>
     </div>
@@ -690,83 +696,76 @@
 <section class="book-cta" id="book">
   <h2>Book now with Samuella Cartwhels.</h2>
   <p>Silly cartwheels you can trust — and right now, £10 off. (£800 off for Year 6!)</p>
-  <a href="#" class="btn-primary" onclick="openModal(); return false;">Book My Cartwhele &#129336;</a>
+  <button class="btn-primary" onclick="openModal()">Book My Cartwhele &#129336;</button>
 </section>
 
 <script>
-  function openModal() {
-    var modal = document.getElementById('booking-modal');
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
+function openModal() {
+  var m = document.getElementById('booking-modal');
+  m.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('booking-modal').style.display = 'none';
+  document.body.style.overflow = '';
+  document.getElementById('form-success').style.display = 'none';
+  document.getElementById('form-wrap').style.display = 'block';
+  document.getElementById('f-name').value = '';
+  document.getElementById('f-email').value = '';
+  document.getElementById('f-phone').value = '';
+  document.getElementById('form-error').style.display = 'none';
+  document.getElementById('submit-btn').disabled = false;
+  document.getElementById('submit-btn').textContent = 'Send Booking Request';
+}
+
+// Wire up nav Book Now button
+window.addEventListener('DOMContentLoaded', function() {
+  var navBtn = document.querySelector('.nav-cta');
+  if (navBtn) navBtn.addEventListener('click', function(e){ e.preventDefault(); openModal(); });
+});
+
+async function submitBooking() {
+  var name  = document.getElementById('f-name').value.trim();
+  var email = document.getElementById('f-email').value.trim();
+  var phone = document.getElementById('f-phone').value.trim();
+  var err   = document.getElementById('form-error');
+
+  if (!name || !email || !phone) {
+    err.textContent = 'Please fill in all three fields.';
+    err.style.display = 'block';
+    return;
   }
-  function closeModal() {
-    document.getElementById('booking-modal').style.display = 'none';
-    document.body.style.overflow = '';
-    document.getElementById('form-success').style.display = 'none';
-    document.getElementById('form-wrap').style.display = 'block';
-    document.getElementById('f-name').value = '';
-    document.getElementById('f-email').value = '';
-    document.getElementById('f-phone').value = '';
-    document.getElementById('form-error').style.display = 'none';
-    var btn = document.getElementById('submit-btn');
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    err.textContent = 'Please enter a valid email address.';
+    err.style.display = 'block';
+    return;
+  }
+  err.style.display = 'none';
+
+  var btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  try {
+    var res = await fetch('https://formspree.io/f/xnjonapy', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ name: name, email: email, phone: phone, _subject: 'New Booking from ' + name })
+    });
+    if (res.ok) {
+      document.getElementById('form-wrap').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    } else {
+      throw new Error('failed');
+    }
+  } catch(e) {
+    err.textContent = 'Something went wrong. Please try again.';
+    err.style.display = 'block';
     btn.textContent = 'Send Booking Request';
     btn.disabled = false;
   }
-  document.getElementById('modal-close').addEventListener('click', closeModal);
-  document.getElementById('modal-backdrop').addEventListener('click', closeModal);
-
-  document.querySelector('.nav-cta').addEventListener('click', function(e) {
-    e.preventDefault(); openModal();
-  });
-
-  async function submitBooking() {
-    var name  = document.getElementById('f-name').value.trim();
-    var email = document.getElementById('f-email').value.trim();
-    var phone = document.getElementById('f-phone').value.trim();
-    var errEl = document.getElementById('form-error');
-
-    if (!name || !email || !phone) {
-      errEl.textContent = 'Please fill in all three fields before submitting.';
-      errEl.style.display = 'block';
-      return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      errEl.textContent = 'Please enter a valid email address.';
-      errEl.style.display = 'block';
-      return;
-    }
-    errEl.style.display = 'none';
-
-    var btn = document.getElementById('submit-btn');
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
-
-    try {
-      var res = await fetch('https://formspree.io/f/xnjonapy', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          phone: phone,
-          _subject: 'New Cartwhele Booking from ' + name,
-          _replyto: email
-        })
-      });
-      if (res.ok) {
-        document.getElementById('form-wrap').style.display = 'none';
-        document.getElementById('form-success').style.display = 'block';
-      } else {
-        throw new Error('Server error');
-      }
-    } catch(e) {
-      errEl.textContent = 'Something went wrong. Please try again.';
-      errEl.style.display = 'block';
-      btn.textContent = 'Send Booking Request';
-      btn.disabled = false;
-    }
-  }
-<\/script>
+}
+</script>
 
 <!-- FOOTER -->
 <footer>
