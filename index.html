@@ -628,7 +628,7 @@
       <p>"I tried seven other cartwheel services before Samuella. Nothing even comes close. The tutorials are brilliant and the £800 Year 6 deal is absolutely wild value."</p>
       <div class="testi-author">
         <div class="avatar av1">J</div>
-        <div><div class="testi-name">Jamie T.</div><div class="testi-role">Year 6 Parent, Bristol</div></div>
+        <div><div class="testi-name">Ieuan B.</div><div class="testi-role">Year 6 Parent, Bristol</div></div>
       </div>
     </div>
     <div class="testi-card">
@@ -636,7 +636,7 @@
       <p>"Nothing beats a Samuella Cartwhele — I didn't believe it until I tried one. Now I do them in car parks, at weddings, everywhere. Thank you Samuella."</p>
       <div class="testi-author">
         <div class="avatar av2">P</div>
-        <div><div class="testi-name">Priya K.</div><div class="testi-role">Enthusiast, Edinburgh</div></div>
+        <div><div class="testi-name">Goerge M.</div><div class="testi-role">Enthusiast, Edinburgh</div></div>
       </div>
     </div>
     <div class="testi-card">
@@ -644,7 +644,7 @@
       <p>"The free videos alone are worth everything. I haven't even booked yet and my cartwheels have improved 300%. Silly cartwheels you can truly, genuinely trust."</p>
       <div class="testi-author">
         <div class="avatar av3">M</div>
-        <div><div class="testi-name">Marcus W.</div><div class="testi-role">PE Teacher, Leeds</div></div>
+        <div><div class="testi-name">Thehan A.</div><div class="testi-role">PE Teacher, Leeds</div></div>
       </div>
     </div>
   </div>
@@ -678,9 +678,23 @@
         <label style="display:block; font-weight:800; font-size:0.82rem; color:#0d1b4b; margin-bottom:0.3rem; letter-spacing:0.05em;">EMAIL ADDRESS</label>
         <input id="f-email" type="email" placeholder="e.g. jamie@example.com" style="width:100%; padding:0.75rem 1rem; border:2px solid #e0e4f5; border-radius:12px; font-size:1rem; font-family:Nunito,sans-serif; box-sizing:border-box;">
       </div>
-      <div style="margin-bottom:1.5rem;">
+      <div style="margin-bottom:1rem;">
         <label style="display:block; font-weight:800; font-size:0.82rem; color:#0d1b4b; margin-bottom:0.3rem; letter-spacing:0.05em;">PHONE NUMBER</label>
         <input id="f-phone" type="tel" placeholder="e.g. 07700 900000" style="width:100%; padding:0.75rem 1rem; border:2px solid #e0e4f5; border-radius:12px; font-size:1rem; font-family:Nunito,sans-serif; box-sizing:border-box;">
+      </div>
+      <div style="margin-bottom:1.5rem;">
+        <label style="display:block; font-weight:800; font-size:0.82rem; color:#0d1b4b; margin-bottom:0.3rem; letter-spacing:0.05em;">WHICH CARTWHEEL DO YOU WANT?</label>
+        <select id="f-cartwheel" style="width:100%; padding:0.75rem 1rem; border:2px solid #e0e4f5; border-radius:12px; font-size:1rem; font-family:Nunito,sans-serif; box-sizing:border-box; background:#fff; color:#0d1b4b; cursor:pointer;">
+          <option value="">-- Pick your cartwheel --</option>
+          <option>The Classic Samuella Cartwhele</option>
+          <option>Sideways is the Right Ways</option>
+          <option>Building Your Cartwhele Confidence</option>
+          <option>The Silly Variation™</option>
+          <option>Party Cartwhele Moves</option>
+          <option>Year 6 Special Edition</option>
+          <option>The World Math Day Special</option>
+          <option>The Lush Life Cartwheel</option>
+        </select>
       </div>
 
       <div id="form-error" style="display:none; background:#fff0f4; border:1.5px solid #ff4d8b; border-radius:10px; padding:0.6rem 1rem; color:#ff4d8b; font-weight:700; font-size:0.88rem; margin-bottom:1rem;"></div>
@@ -701,10 +715,10 @@
 
 <script>
 function openModal() {
-  var m = document.getElementById('booking-modal');
-  m.style.display = 'flex';
+  document.getElementById('booking-modal').style.display = 'flex';
   document.body.style.overflow = 'hidden';
 }
+
 function closeModal() {
   document.getElementById('booking-modal').style.display = 'none';
   document.body.style.overflow = '';
@@ -713,25 +727,31 @@ function closeModal() {
   document.getElementById('f-name').value = '';
   document.getElementById('f-email').value = '';
   document.getElementById('f-phone').value = '';
+  document.getElementById('f-cartwheel').value = '';
   document.getElementById('form-error').style.display = 'none';
   document.getElementById('submit-btn').disabled = false;
   document.getElementById('submit-btn').textContent = 'Send Booking Request';
 }
 
-// Wire up nav Book Now button
 window.addEventListener('DOMContentLoaded', function() {
   var navBtn = document.querySelector('.nav-cta');
   if (navBtn) navBtn.addEventListener('click', function(e){ e.preventDefault(); openModal(); });
 });
 
 async function submitBooking() {
-  var name  = document.getElementById('f-name').value.trim();
-  var email = document.getElementById('f-email').value.trim();
-  var phone = document.getElementById('f-phone').value.trim();
-  var err   = document.getElementById('form-error');
+  var name      = document.getElementById('f-name').value.trim();
+  var email     = document.getElementById('f-email').value.trim();
+  var phone     = document.getElementById('f-phone').value.trim();
+  var cartwheel = document.getElementById('f-cartwheel').value;
+  var err       = document.getElementById('form-error');
 
   if (!name || !email || !phone) {
     err.textContent = 'Please fill in all three fields.';
+    err.style.display = 'block';
+    return;
+  }
+  if (!cartwheel) {
+    err.textContent = 'Please select which cartwheel you want.';
     err.style.display = 'block';
     return;
   }
@@ -740,8 +760,8 @@ async function submitBooking() {
     err.style.display = 'block';
     return;
   }
-  err.style.display = 'none';
 
+  err.style.display = 'none';
   var btn = document.getElementById('submit-btn');
   btn.textContent = 'Sending...';
   btn.disabled = true;
@@ -750,7 +770,13 @@ async function submitBooking() {
     var res = await fetch('https://formspree.io/f/xnjonapy', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ name: name, email: email, phone: phone, _subject: 'New Booking from ' + name })
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        phone: phone,
+        cartwheel: cartwheel,
+        _subject: 'New Booking from ' + name
+      })
     });
     if (res.ok) {
       document.getElementById('form-wrap').style.display = 'none';
